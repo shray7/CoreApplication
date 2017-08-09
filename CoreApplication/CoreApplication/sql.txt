@@ -1,0 +1,61 @@
+﻿USE [Application]
+GO
+/****** Object:  Table [dbo].[Answer]    Script Date: 8/9/2017 2:15:54 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Answer](
+	[AnswerId] [int] IDENTITY(1,1) NOT NULL,
+	[QuestionId] [int] NOT NULL,
+	[Answer] [varchar](250) NOT NULL,
+	[AnsweredCorrectly] [bit] NOT NULL,
+	[Name] [varchar](250) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[AnswerId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Application]    Script Date: 8/9/2017 2:15:54 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Application](
+	[ApplicationId] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[IsAcceptable] [bit] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ApplicationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Question]    Script Date: 8/9/2017 2:15:54 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Question](
+	[QuestionId] [int] IDENTITY(1,1) NOT NULL,
+	[Question] [varchar](250) NOT NULL,
+	[Answer] [varchar](250) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[QuestionId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Question] ON 
+GO
+INSERT [dbo].[Question] ([QuestionId], [Question], [Answer]) VALUES (1, N'Are you eligible to work in the US', N'Yes')
+GO
+INSERT [dbo].[Question] ([QuestionId], [Question], [Answer]) VALUES (2, N'Have you written an API', N'Yes')
+GO
+INSERT [dbo].[Question] ([QuestionId], [Question], [Answer]) VALUES (3, N'What is the default value of an integer type in C#', N'0')
+GO
+INSERT [dbo].[Question] ([QuestionId], [Question], [Answer]) VALUES (4, N'Which data structure should you use to do constant time lookups', N'dictionary')
+GO
+SET IDENTITY_INSERT [dbo].[Question] OFF
+GO
