@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Models;
+using Microsoft.EntityFrameworkCore;
 
 
-namespace CoreApplication.Models
+namespace CoreApplication
 {
     public class CoreApplicationContext : DbContext
     {

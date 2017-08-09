@@ -1,0 +1,6 @@
+{
+  "lockfileVersion": 1,
+  "devDependencies": {
+    "@angular/cli": "^1.2.7"
+  }
+}
