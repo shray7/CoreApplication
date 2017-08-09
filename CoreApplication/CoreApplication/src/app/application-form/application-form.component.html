@@ -1,8 +1,8 @@
 ﻿<div>
+  <label>Name: </label>
   <input type="text" [(ngModel)]="name"/>
   <div *ngFor="let question of questions" >{{question.questionDescription}}
     <input type="text" [(ngModel)]="question.userAnswer"  />
   </div>
-  
 </div>
 <input type="button" value="Submit" (click)="onSubmit()" />

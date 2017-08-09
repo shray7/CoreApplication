@@ -27,13 +27,10 @@ export class ApplicationFormComponent implements OnInit {
         console.log(this.questions);
         let answers = [];
         for (let entry of this.questions) {
-            let answer = new Answer(entry.questionId, entry.userAnswer, entry.userAnswer == entry.answer, this.name);
+            let answer = new Answer(entry.questionId, entry.userAnswer, entry.userAnswer.toUpperCase() == entry.answer.toUpperCase(), this.name);
             answers.push(answer);
         }
-        console.log(answers);
-        this._httpService.post('/api/answers', answers, null).subscribe(v => {
-
-        })
+        this._httpService.post('/api/answers', answers, null).subscribe();
     }
 
 }
