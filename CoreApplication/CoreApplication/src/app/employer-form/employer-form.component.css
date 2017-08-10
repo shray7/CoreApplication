@@ -25,6 +25,7 @@ table tr:nth-child(odd) {
 }
 
 table th {
-  color: white;
-  background-color: black;
+  color: black;
+  border-bottom:thin;
+  border-bottom-style:solid;
 }
