@@ -11,7 +11,7 @@ namespace CoreApplication.Tests
         public void Test1()
         {
             var obuilder = new DbContextOptionsBuilder<Data.CoreContext>();
-            
+            //obuilder.UseInMemoryDatabase
 
             
 
