@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
-using CoreApplication.Models;
+using CoreApplication.Data;
 
 namespace CoreApplication
 {
