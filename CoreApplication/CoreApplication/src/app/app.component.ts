@@ -7,11 +7,16 @@ import { Http } from '@angular/http'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    constructor(private _httpService: Http) { }
-    apiValues: string[] = [];
+    isApplication: boolean = true;
+    constructor() { }
+    
     ngOnInit() {
-        //this._httpService.get('/api/values').subscribe(values => {
-        //    this.apiValues = values.json() as string[];
-        //});
+        
+    }
+    seeApplication() {
+        this.isApplication = true;
+    }
+    seeEmployer() {
+        this.isApplication = false;
     }
 }

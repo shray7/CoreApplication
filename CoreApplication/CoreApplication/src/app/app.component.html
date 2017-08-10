@@ -1,2 +1,7 @@
-﻿<app-employer-form></app-employer-form>
-<app-application-form></app-application-form>
+﻿<nav>
+  <a href="#" (click)="seeApplication()">Apply Here</a> |
+  <a href="#" (click)="seeEmployer()">Employers</a> |
+</nav>
+
+<app-employer-form *ngIf="!isApplication"></app-employer-form>
+<app-application-form *ngIf="isApplication"></app-application-form>

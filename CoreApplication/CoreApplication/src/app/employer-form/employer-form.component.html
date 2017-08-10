@@ -1,9 +1,16 @@
-﻿<div class='card card-block'>
-  <div  *ngFor="let app of clientApplications">
-    <p>Applicant Name: {{app.name}}</p>
-    <div *ngFor="let question of app.clientQuestions">
-      <label>Answer Id: {{question.answerId}}</label>
-      <label>User Answer: {{question.userAnswer}}</label>
-    </div>
-  </div>
+﻿<div class="card" *ngFor="let app of clientApplications">
+  <span>
+    <label>Applicant Name: </label> {{app.name}}
+  </span>
+
+  <table class="columns" style="width:100%">
+      <tr>
+        <th>AnswerId</th>
+        <th>User Answer</th>
+      </tr>
+    <tr *ngFor="let question of app.clientQuestions">
+      <td>{{question.answerId}}</td>
+      <td>{{question.userAnswer}}</td>
+   </tr>
+  </table>
 </div>

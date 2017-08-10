@@ -1,8 +1,13 @@
-﻿<div class="card card-block">
-  <label>Name: </label>
-  <input type="text" [(ngModel)]="name" />
-  <div *ngFor="let question of questions" >{{question.question}}
-    <input type="text" [(ngModel)]="question.userAnswer"  />
-  </div>
+﻿<div class="card">
+  <table style="width:100%">
+    <tr>
+      <td>Name: </td>
+      <td><input type="text" [(ngModel)]="name" /></td>
+    </tr>
+    <tr *ngFor="let question of questions">
+      <td>{{question.question}}</td>
+      <td><input type="text" [(ngModel)]="question.userAnswer" /></td>
+    </tr>
+  </table>
+  <input type="button" value="Submit" (click)="onSubmit()" />
 </div>
-<input type="button" value="Submit" (click)="onSubmit()" />
