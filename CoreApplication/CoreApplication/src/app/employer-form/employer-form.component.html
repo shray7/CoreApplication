@@ -1,3 +1,9 @@
-<p>
-  employer-form works!
-</p>
+﻿<div class='card card-block'>
+  <div  *ngFor="let app of clientApplications">
+    <p>Applicant Name: {{app.name}}</p>
+    <div *ngFor="let question of app.clientQuestions">
+      <label>Answer Id: {{question.answerId}}</label>
+      <label>User Answer: {{question.userAnswer}}</label>
+    </div>
+  </div>
+</div>

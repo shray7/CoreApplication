@@ -17,7 +17,7 @@ export class ApplicationFormComponent implements OnInit {
         this._httpService.get('/api/questions').subscribe(values => {
             let json = values.json();
             for (var i = 0; i < json.length; i++) {
-                let question = new Question(json[i].questionId, json[i].questionDescription, json[i].answer, "");
+                let question = new Question(json[i].questionId, json[i].question, json[i].answer, "");
                 this.questions.push(question);
             }
         });
@@ -27,10 +27,14 @@ export class ApplicationFormComponent implements OnInit {
         console.log(this.questions);
         let answers = [];
         for (let entry of this.questions) {
-            let answer = new Answer(entry.questionId, entry.userAnswer, entry.userAnswer.toUpperCase() == entry.answer.toUpperCase(), this.name);
+            let answer = new Answer(entry.questionId, entry.userAnswer.trim(), entry.userAnswer.trim().toUpperCase() == entry.answer.toUpperCase(), this.name.trim());
             answers.push(answer);
         }
         this._httpService.post('/api/answers', answers, null).subscribe();
+        for (let question of this.questions) {
+            question.userAnswer = '';
+        }
+        this.name = '';
     }
 
 }

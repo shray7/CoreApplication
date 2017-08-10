@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Core.Models;
-
+using CoreApplication.Models;
 
 namespace CoreApplication.Controllers
 {
@@ -14,16 +13,16 @@ namespace CoreApplication.Controllers
   [Route("api/Answers")]
   public class AnswersController : Controller
   {
-    private readonly CoreApplicationContext _context;
+    private readonly CoreContext _context;
 
-    public AnswersController(CoreApplicationContext context)
+    public AnswersController(CoreContext context)
     {
       _context = context;
     }
 
     // GET: api/Answers
     [HttpGet]
-    public IEnumerable<Answer> GetAnswer()
+    public IEnumerable<Answers> GetAnswer()
     {
       return _context.Answer;
     }
@@ -49,7 +48,7 @@ namespace CoreApplication.Controllers
 
     // PUT: api/Answers/5
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutAnswer([FromRoute] int id, [FromBody] Answer answer)
+    public async Task<IActionResult> PutAnswer([FromRoute] int id, [FromBody] Answers answer)
     {
       if (!ModelState.IsValid)
       {
@@ -84,18 +83,25 @@ namespace CoreApplication.Controllers
 
     // POST: api/Answers
     [HttpPost]
-    public async Task<IActionResult> PostAnswer([FromBody] Answer[] answers)
+    public async Task<IActionResult> PostAnswer([FromBody] Answers[] answers)
     {
       if (!ModelState.IsValid)
       {
         return BadRequest(ModelState);
       }
 
-      //_context.Answer.Add(answer);
-      //await _context.SaveChangesAsync();
+      await _context.Answer.AddRangeAsync(answers);
+      if (answers.All(x => x.AnsweredCorrectly))
+      {
+        _context.Application.Add(new Application() { IsAcceptable = true, Name = answers.FirstOrDefault().Name });
+      }
+      else
+      {
+        _context.Application.Add(new Application() { IsAcceptable = false, Name = answers.FirstOrDefault().Name });
+      }
+      await _context.SaveChangesAsync();
 
-      //return CreatedAtAction("GetAnswer", new { id = answer.AnswerId }, answer);
-      return Ok("cool");
+      return Ok("Success!");
     }
 
     // DELETE: api/Answers/5

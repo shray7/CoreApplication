@@ -1,4 +1,4 @@
 ﻿export class Answer {
-    public constructor(public questionId: number, public answerText: string, public answeredCorrectly: boolean, public name: string) { }
+    public constructor(public questionId: number, public answer: string, public answeredCorrectly: boolean, public name: string) { }
 }
 

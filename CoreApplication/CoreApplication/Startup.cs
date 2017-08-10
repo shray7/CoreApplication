@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
+using CoreApplication.Models;
 
 namespace CoreApplication
 {
@@ -29,14 +30,16 @@ namespace CoreApplication
             // Add framework services.
             services.AddMvc();
 
-            services.AddDbContext<CoreApplicationContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("CoreApplicationContext")));
+          
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
+
+            services.AddDbContext<CoreContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("CoreContext")));
 
 
         }
@@ -47,16 +50,16 @@ namespace CoreApplication
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.Use(async (context, next) => {
-                await next();
-                if (context.Response.StatusCode == 404 &&
-                   !Path.HasExtension(context.Request.Path.Value) &&
-                   !context.Request.Path.Value.StartsWith("/api/"))
-                {
-                    context.Request.Path = "/index.html";
-                    await next();
-                }
-            });
+            //app.Use(async (context, next) => {
+            //    await next();
+            //    if (context.Response.StatusCode == 404 &&
+            //       !Path.HasExtension(context.Request.Path.Value) &&
+            //       !context.Request.Path.Value.StartsWith("/api/"))
+            //    {
+            //        context.Request.Path = "/index.html";
+            //        await next();
+            //    }
+            //});
             app.UseMvcWithDefaultRoute();
             app.UseDefaultFiles();
             app.UseStaticFiles();
